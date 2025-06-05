@@ -5,7 +5,7 @@
 * H03: Como usuário não cadastrado, quero visualizar detalhes de uma república (descrição, fotos, preço e localização), para saber se vale a pena entrar em contato.
 * H04: Como usuário cadastrado, quero cadastrar minha república no site, para que ela possa ser encontrada por interessados.
 * H05: Como usuário cadastrado, quero editar as informações de república (fotos, vagas disponíveis), para manter os dados atualizados.
-* H06: Como usuário não cadastrado, quero fazer cadastro, tanto como estudante e como morador de uma república.
-* H07: Como usuário cadastrado, quero avaliar as repúblicas disponíveis.
+* H06: Como usuário não cadastrado, quero fazer cadastro, tanto como estudante e como uma república.
+* H07: Como usuário cadastrado de estudante, quero avaliar as repúblicas disponíveis.
 * H08: Como usuário cadastrado, quero receber notificações por e-mail sobre atividades importantes, como novas repúblicas cadastradas e vagas novas que surgem.
-  
+* H09: Como usuário não cadastrado, quero poder entrar em contato com uma república, por meios externos de comunicação (Whatsapp).
