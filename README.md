@@ -3,10 +3,10 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 * [Project](https://github.com/users/Vianjus/projects/1)
 * [Requisitos](https://github.com/Vianjus/guia-de-republicas/edit/main/requisitos.md)
 ## Integrantes
-* Camila Torres
-* Estefanio
-* Henrique Lauar
-* João Pedro Andrade
-* Paulo Eduardo Armani
-* Tiago Mol
-* Vinicius Anjos
+* [Camila Torres](https://github.com/Camilatda)
+* [Estefanio](https://github.com/estefanio-git)
+* [Henrique Lauar](https://github.com/henriquelauar)
+* [João Pedro Andrade](https://github.com/Jpcarvalhoxx)
+* [Paulo Eduardo Armani](https://github.com/pauloearmani)
+* [Tiago Mol](https://github.com/tiagoqwert)
+* [Vinicius Anjos](https://github.com/Vianjus)
