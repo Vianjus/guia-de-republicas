@@ -1,0 +1,88 @@
+/* src/pages/RepublicDetails.css */
+.details-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.details-content {
+  display: flex;
+  gap: 24px;
+}
+
+.details-gallery {
+  width: 66%;
+}
+
+.main-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.thumbnail-grid img {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.details-info {
+  width: 34%;
+}
+
+.details-info h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.features {
+  font-size: 0.9rem;
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.contact-button {
+  background-color: #d1f7dc;
+  color: #217a43;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #a6e7b7;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.light {
+  font-weight: normal;
+  color: #666;
+}
+
+.address,
+.rating,
+.anonymous {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+}

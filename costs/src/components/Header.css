@@ -1,0 +1,52 @@
+/* src/components/Header.css */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  gap: 16px;
+}
+
+.logo {
+  height: 40px;
+  object-fit: contain;
+}
+
+.search-input {
+  width: 300px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  gap: 16px;
+}
+
+.announce-link {
+  font-size: 0.9rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.announce-link:hover {
+  text-decoration: underline;
+  color: #2a7ae4;
+}
+
+.user-icon {
+  font-size: 1.6rem;
+  color: #555;
+  cursor: pointer;
+}
