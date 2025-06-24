@@ -1,0 +1,5 @@
+# Ignorar node_modules específico do backend/guia_rep
+backend/guia_rep/node_modules/
+
+# Ignorar arquivo .env dentro de guia_rep
+backend/guia_rep/.env
