@@ -86,3 +86,38 @@
   color: #555;
   margin-top: 4px;
 }
+
+/* Estilos para o carrossel */
+.image-gallery {
+  width: 100%;
+}
+
+.image-gallery-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.image-gallery-thumbnail img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-gallery-thumbnail.active, 
+.image-gallery-thumbnail:hover {
+  border: 3px solid #2a7ae4;
+}
+
+.image-gallery-icon:hover {
+  color: #2a7ae4;
+}
+
+/* Ajuste para manter o layout existente */
+.details-gallery {
+  width: 66%;
+  overflow: hidden;
+}

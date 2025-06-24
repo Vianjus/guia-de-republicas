@@ -1,17 +1,39 @@
 // src/pages/RepublicDetails.jsx
 import './RepublicDetails.css';
+import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
+import testInd1 from '../imgtests/testInd1.jpeg';
+import testInd2 from '../imgtests/testInd2.jpeg';
+import testInd3 from '../imgtests/testInd3.jpeg';
 
 export default function RepublicDetails() {
+  const images = [
+    {
+      original: testInd1,
+      thumbnail: testInd1
+    },
+    {
+      original: testInd2,
+      thumbnail: testInd2
+    },
+    {
+      original: testInd3,
+      thumbnail: testInd3
+    }
+  ];
+
   return (
     <main className="details-container">
       <div className="details-content">
         <div className="details-gallery">
-          <img src="/casa-principal.jpg" className="main-image" />
-          <div className="thumbnail-grid">
-            <img src="/foto1.jpg" />
-            <img src="/foto2.jpg" />
-            <img src="/foto3.jpg" />
-          </div>
+          <ImageGallery
+            items={images}
+            showPlayButton={false}
+            showFullscreenButton={true}
+            showThumbnails={true}
+            thumbnailPosition="bottom"
+            autoPlay={false}
+          />
         </div>
 
         <div className="details-info">
