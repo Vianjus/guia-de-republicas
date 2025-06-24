@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { RepublicaService } from "../services/RepublicaService";
 
+//alterando nome errado co commit
+
 export class RepublicaController {
   static async getAll(req: Request, res: Response) {
     try {
