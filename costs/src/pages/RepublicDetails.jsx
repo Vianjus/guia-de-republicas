@@ -2,9 +2,9 @@
 import './RepublicDetails.css';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
-import testInd1 from '../imgtests/testInd1.jpeg';
-import testInd2 from '../imgtests/testInd2.jpeg';
-import testInd3 from '../imgtests/testInd3.jpeg';
+import testInd1 from '../imgtests/testInd1.png';
+import testInd2 from '../imgtests/testInd2.png';
+import testInd3 from '../imgtests/testInd3.png';
 
 export default function RepublicDetails() {
   const images = [
