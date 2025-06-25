@@ -10,3 +10,9 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 * [Paulo Eduardo Armani](https://github.com/pauloearmani)
 * [Tiago Mol](https://github.com/tiagoqwert)
 * [Vinicius Anjos](https://github.com/Vianjus)
+
+
+## Release Notes
+
+### V 0.0.1
+* 
