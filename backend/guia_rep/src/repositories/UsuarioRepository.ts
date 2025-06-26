@@ -3,15 +3,25 @@ import { Usuario } from "../models/Usuario";
 
 export class UsuarioRepository {
   static async findAll(): Promise<Usuario[]> {
-    const res = await pool.query("SELECT * FROM usuarios ORDER BY id");
-    return res.rows;
+    try {
+      const res = await pool.query("SELECT * FROM usuarios ORDER BY id");
+      return res.rows;
+    } catch (error) {
+      console.error("Erro ao buscar usuários:", error);
+      throw new Error("Erro ao buscar usuários");
+    }
   }
 
   static async findByEmail(email: string): Promise<Usuario | null> {
-    const res = await pool.query("SELECT * FROM usuarios WHERE email = $1", [
-      email,
-    ]);
-    return res.rows[0] || null;
+    try {
+      const res = await pool.query("SELECT * FROM usuarios WHERE email = $1", [
+        email,
+      ]);
+      return res.rows[0] || null;
+    } catch (error) {
+      console.error("Erro ao buscar usuário por email:", error);
+      throw new Error("Erro ao buscar usuário");
+    }
   }
 
   static async create(
@@ -23,6 +33,7 @@ export class UsuarioRepository {
       VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
+
     const values = [
       data.nome_completo,
       data.email,
@@ -30,9 +41,13 @@ export class UsuarioRepository {
       data.telefone_contato || null,
       data.tipo_usuario,
     ];
-    const res = await pool.query(query, values);
-    return res.rows[0];
-  }
 
-  // Adicione outros métodos conforme necessidade (update, delete, findById, etc)
+    try {
+      const res = await pool.query(query, values);
+      return res.rows[0];
+    } catch (error) {
+      console.error("Erro ao criar usuário:", error);
+      throw new Error("Erro ao criar usuário");
+    }
+  }
 }

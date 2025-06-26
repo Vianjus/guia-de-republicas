@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { jwtVerify } from "jose";
-
-const secret = new TextEncoder().encode(process.env.JWT_SECRET as string);
+import { verifyToken } from "../utils/jwt"; // ou o caminho correto do seu projeto
 
 export const authenticateToken = async (
   req: Request,
@@ -17,7 +15,7 @@ export const authenticateToken = async (
   }
 
   try {
-    const { payload } = await jwtVerify(token, secret);
+    const payload = await verifyToken(token);
     (req as any).user = payload;
     next();
   } catch {

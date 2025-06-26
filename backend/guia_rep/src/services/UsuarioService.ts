@@ -29,17 +29,14 @@ export class UsuarioService {
     const existing = await UsuarioRepository.findByEmail(data.email);
     if (existing) throw new Error("Email já cadastrado");
 
-    // Hash da senha com bcrypt
     const senha_hash = await bcrypt.hash(data.senha, 10);
-
+    const { senha, ...resto } = data;
     const usuarioData = {
-      nome_completo: data.nome_completo,
-      email: data.email,
+      ...resto,
       senha_hash,
-      telefone_contato: data.telefone_contato,
-      tipo_usuario: data.tipo_usuario,
     };
 
-    return UsuarioRepository.create(usuarioData);
+    // Aqui você pode salvar no banco, por exemplo:
+    return await UsuarioRepository.create(usuarioData);
   }
 }

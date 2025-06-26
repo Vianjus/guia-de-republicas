@@ -1,3 +1,5 @@
+import { UsuarioSeguro } from "./Usuario";
+
 export enum TipoRepublica {
   MISTA = "mista",
   FEMININA = "feminina",
@@ -14,12 +16,14 @@ export interface FotoRepublica {
 
 export interface Republica {
   id: string; // UUID
-  name: string;
-  description: string;
+  responsavel: UsuarioSeguro;
+  nome: string;
+  descricao: string;
   endereco_completo: string;
   tipo: TipoRepublica; // Enum, exemplo: "mista", "feminina", etc.
   preco_media_mensal: number; // ex: 650.00
   vagas_disponiveis: number;
+  telefone_rep: string;
   ativa: boolean;
   fotos: FotoRepublica[];
 }

@@ -3,10 +3,10 @@ import { UsuarioService } from "../services/UsuarioService";
 
 export class UsuarioController {
   static async login(req: Request, res: Response): Promise<void> {
-    const { email, pass } = req.body;
+    const { email, senha } = req.body;
 
     try {
-      const token = await UsuarioService.login(email, pass);
+      const token = await UsuarioService.login(email, senha);
       res.json({ token });
     } catch (err) {
       res.status(401).json({ error: (err as Error).message });

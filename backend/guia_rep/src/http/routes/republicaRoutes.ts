@@ -5,6 +5,6 @@ import { authenticateToken } from "../../middlewares/authMiddleware";
 const router = Router();
 
 router.get("/", authenticateToken, RepublicaController.getAll);
-//outer.post("/create/users", RepublicaController.create);
+router.post("/create", authenticateToken, RepublicaController.create);
 
 export default router;

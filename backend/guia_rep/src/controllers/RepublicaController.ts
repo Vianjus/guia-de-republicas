@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { RepublicaService } from "../services/RepublicaService";
 
-//alterando nome errado co commit
-
 export class RepublicaController {
   static async getAll(req: Request, res: Response) {
     try {
@@ -13,12 +11,12 @@ export class RepublicaController {
     }
   }
 
-  /*static async create(req: Request, res: Response) {
+  static async create(req: Request, res: Response): Promise<void> {
     try {
-      const usuario = await UsuarioService.create(req.body);
-      res.status(201).json(usuario);
-    } catch (error) {
-      res.status(400).json({ error: (error as Error).message });
+      const rep = await RepublicaService.create(req.body);
+      res.status(201).json(rep);
+    } catch (err) {
+      res.status(400).json({ error: (err as Error).message });
     }
-  }*/
+  }
 }

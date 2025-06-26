@@ -1,5 +1,7 @@
 export type TipoUsuario = "estudante" | "morador";
 
+export type UsuarioSeguro = Omit<Usuario, "senha_hash">;
+
 export interface Usuario {
   id: number;
   nome_completo: string;
