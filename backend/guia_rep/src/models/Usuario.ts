@@ -7,7 +7,7 @@ export interface Usuario {
   nome_completo: string;
   email: string;
   senha_hash: string;
-  telefone_contato?: string | null;
+  telefone_contato: string;
   tipo_usuario: TipoUsuario;
   data_criacao: Date;
 }

@@ -13,18 +13,22 @@ export class UsuarioController {
     }
   }
 
-  static async getAll(req: Request, res: Response): Promise<void> {
+  static async retornarTodosUsuarios(
+    req: Request,
+    res: Response
+  ): Promise<void> {
     try {
-      const usuarios = await UsuarioService.getAll();
+      const usuarios = await UsuarioService.retornarTodosUsuarios();
       res.json(usuarios);
     } catch (error) {
       res.status(500).json({ error: (error as Error).message });
     }
   }
 
-  static async create(req: Request, res: Response): Promise<void> {
+  static async cadastrarUsuario(req: Request, res: Response): Promise<void> {
     try {
-      const usuario = await UsuarioService.create(req.body);
+      console.log(req);
+      const usuario = await UsuarioService.cadastrarUsuario(req.body);
       res.status(201).json(usuario);
     } catch (error) {
       res.status(400).json({ error: (error as Error).message });

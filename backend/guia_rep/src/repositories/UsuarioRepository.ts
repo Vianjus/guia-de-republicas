@@ -1,10 +1,12 @@
 import { pool } from "../config/database";
-import { Usuario } from "../models/Usuario";
+import { Usuario, UsuarioSeguro } from "../models/Usuario";
 
 export class UsuarioRepository {
-  static async findAll(): Promise<Usuario[]> {
+  static async encontrarTodosUsuarioNoBD(): Promise<UsuarioSeguro[]> {
     try {
-      const res = await pool.query("SELECT * FROM usuarios ORDER BY id");
+      const res = await pool.query(
+        "SELECT id, nome_completo, email, telefone_contato, tipo_usuario, data_criacao FROM usuarios"
+      );
       return res.rows;
     } catch (error) {
       console.error("Erro ao buscar usuários:", error);
@@ -12,7 +14,7 @@ export class UsuarioRepository {
     }
   }
 
-  static async findByEmail(email: string): Promise<Usuario | null> {
+  static async encontrarPorEmailNoBD(email: string): Promise<Usuario | null> {
     try {
       const res = await pool.query("SELECT * FROM usuarios WHERE email = $1", [
         email,
@@ -24,7 +26,7 @@ export class UsuarioRepository {
     }
   }
 
-  static async create(
+  static async cadastrarUsuarioNoBD(
     data: Omit<Usuario, "id" | "data_criacao">
   ): Promise<Usuario> {
     const query = `
@@ -38,7 +40,7 @@ export class UsuarioRepository {
       data.nome_completo,
       data.email,
       data.senha_hash,
-      data.telefone_contato || null,
+      data.telefone_contato,
       data.tipo_usuario,
     ];
 

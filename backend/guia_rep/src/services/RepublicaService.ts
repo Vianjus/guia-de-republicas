@@ -10,11 +10,11 @@ type RepublicaEntrada = Omit<
 };
 
 export class RepublicaService {
-  static async getAll(): Promise<Republica[]> {
-    return RepublicaRepository.encontrarTodasReps();
+  static async encontrarTodasReps(): Promise<Republica[]> {
+    return RepublicaRepository.encontrarTodasRepsNoBD();
   }
 
-  static async create(data: RepublicaEntrada): Promise<Republica> {
+  static async cadastrarRep(data: RepublicaEntrada): Promise<Republica> {
     // 1. Verifica se já existe república com mesmo nome e tipo
 
     console.log(data);
@@ -26,7 +26,9 @@ export class RepublicaService {
     if (existing) throw new Error("República já cadastrada");
 
     // 2. Busca o usuário responsável pelo e-mail
-    const usuario = await UsuarioRepository.findByEmail(data.email_responsavel);
+    const usuario = await UsuarioRepository.encontrarPorEmailNoBD(
+      data.email_responsavel
+    );
     if (!usuario) throw new Error("Responsável não encontrado");
 
     const jaResponsavel =
@@ -45,6 +47,6 @@ export class RepublicaService {
       };
 
     // 4. Chama o repository para inserir e retorna o resultado
-    return RepublicaRepository.create(repData);
+    return RepublicaRepository.cadastrarRepNoBD(repData);
   }
 }

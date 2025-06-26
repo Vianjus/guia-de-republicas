@@ -2,7 +2,7 @@ import { pool } from "../config/database";
 import { Republica } from "../models/Republica";
 
 export class RepublicaRepository {
-  static async encontrarTodasReps(): Promise<Republica[]> {
+  static async encontrarTodasRepsNoBD(): Promise<Republica[]> {
     try {
       const res = await pool.query(`
         SELECT 
@@ -42,7 +42,7 @@ export class RepublicaRepository {
     }
   }
 
-  static async create(
+  static async cadastrarRepNoBD(
     data: Omit<Republica, "id" | "data_criacao" | "data_atualizacao">
   ): Promise<Republica> {
     const client = await pool.connect();

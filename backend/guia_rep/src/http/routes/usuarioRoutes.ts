@@ -5,9 +5,9 @@ import { authenticateToken } from "../../middlewares/authMiddleware";
 const router = Router();
 
 router.post("/login", UsuarioController.login);
-router.post("/", UsuarioController.create);
+router.post("/create", UsuarioController.cadastrarUsuario);
 
 // rota protegida
-router.get("/", authenticateToken, UsuarioController.getAll);
+router.get("/", authenticateToken, UsuarioController.retornarTodosUsuarios);
 
 export default router;
