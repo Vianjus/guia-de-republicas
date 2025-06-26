@@ -17,6 +17,7 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 ### V 0.0.1
 * Página modelo de exibição de república (estática)
   * Criação de imagens exemplo para uso.
+  * Carossel de imagens.
 * Header padrão
 * Início do projetização do Banco de Dados
 * Início do Back-End
