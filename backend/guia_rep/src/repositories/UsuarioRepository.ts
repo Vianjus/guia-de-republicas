@@ -14,6 +14,19 @@ export class UsuarioRepository {
     }
   }
 
+  static async encontrarUsuarioPorIdNoBD(id: number): Promise<UsuarioSeguro[]> {
+    try {
+      const res = await pool.query(
+        "SELECT id, nome_completo, email, telefone_contato, tipo_usuario, data_criacao FROM usuarios WHERE id =$1 ",
+        [id]
+      );
+      return res.rows;
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
+      throw new Error("Erro ao buscar usuário");
+    }
+  }
+
   static async encontrarPorEmailNoBD(email: string): Promise<Usuario | null> {
     try {
       const res = await pool.query("SELECT * FROM usuarios WHERE email = $1", [

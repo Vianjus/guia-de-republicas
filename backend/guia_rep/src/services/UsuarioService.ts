@@ -16,18 +16,24 @@ export class UsuarioService {
       throw new Error("Senha inválida");
     }
 
-    const token = generateToken({ id: usuario.id, email: usuario.email });
+    const token = generateToken({
+      id: usuario.id,
+      email: usuario.email,
+      cargo: "normal",
+    });
     return token;
   }
   static async retornarTodosUsuarios(): Promise<UsuarioSeguro[]> {
     return UsuarioRepository.encontrarTodosUsuarioNoBD();
   }
 
+  static async retornarUsuarioPorId(id: number): Promise<UsuarioSeguro[]> {
+    return UsuarioRepository.encontrarUsuarioPorIdNoBD(id);
+  }
+
   static async cadastrarUsuario(
     data: Omit<Usuario, "id" | "data_criacao"> & { senha: string }
   ): Promise<Usuario> {
-    console.log(data);
-
     const existing = await UsuarioRepository.encontrarPorEmailNoBD(data.email);
     if (existing) throw new Error("Email já cadastrado");
 

@@ -25,9 +25,26 @@ export class UsuarioController {
     }
   }
 
+  static async retornarUsuarioPorId(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    const id = req.params.id;
+    const numId = parseInt(id);
+
+    try {
+      const usuario = await UsuarioService.retornarUsuarioPorId(numId);
+      if (!usuario) {
+        res.status(404).json({ mensagem: "Usuário não encontrado" });
+      }
+      res.status(200).json(usuario);
+    } catch (error) {
+      res.status(500).json({ erro: "Erro ao buscar usuário" });
+    }
+  }
+
   static async cadastrarUsuario(req: Request, res: Response): Promise<void> {
     try {
-      console.log(req);
       const usuario = await UsuarioService.cadastrarUsuario(req.body);
       res.status(201).json(usuario);
     } catch (error) {

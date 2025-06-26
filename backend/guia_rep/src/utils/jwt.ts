@@ -9,7 +9,7 @@ if (!process.env.JWT_SECRET) {
 export async function generateToken(payload: JWTPayload): Promise<string> {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("1h") // ou use variável do env, ex: process.env.JWT_EXPIRES_IN
+    .setExpirationTime("1h")
     .sign(secret);
 }
 

@@ -17,8 +17,6 @@ export class RepublicaService {
   static async cadastrarRep(data: RepublicaEntrada): Promise<Republica> {
     // 1. Verifica se já existe república com mesmo nome e tipo
 
-    console.log(data);
-
     const existing = await RepublicaRepository.encontrarPorNomeTipo(
       data.nome,
       data.tipo

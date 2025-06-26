@@ -5,7 +5,7 @@ export class RepublicaController {
   static async encontrarTodasReps(req: Request, res: Response) {
     try {
       const reps = await RepublicaService.encontrarTodasReps();
-      res.json(reps);
+      res.status(201).json(reps);
     } catch (error) {
       res.status(500).json({ error: (error as Error).message });
     }
@@ -13,6 +13,8 @@ export class RepublicaController {
 
   static async cadastrarRep(req: Request, res: Response): Promise<void> {
     try {
+      const user = (req as any).user;
+      console.log(user);
       const rep = await RepublicaService.cadastrarRep(req.body);
       res.status(201).json(rep);
     } catch (err) {
