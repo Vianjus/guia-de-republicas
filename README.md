@@ -15,4 +15,8 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 ## Release Notes
 
 ### V 0.0.1
-* 
+* Página modelo de exibição de república (estática)
+  * Criação de imagens exemplo para uso.
+* Header padrão
+* Início do projetização do Banco de Dados
+* Início do Back-End
