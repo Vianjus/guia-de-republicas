@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import "./Perfil.css";
 
 const LoginPage = () => {
@@ -39,7 +40,7 @@ const LoginPage = () => {
           <button type="submit" className="login-button">Entrar</button>
         </form>
         <p className="login-footer">
-          Ainda não tem uma conta? <a href="/cadastro">Cadastre-se</a>
+            Ainda não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
         </p>
       </div>
     </div>

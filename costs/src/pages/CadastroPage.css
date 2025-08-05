@@ -1,0 +1,81 @@
+.cadastro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.cadastro-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+.cadastro-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.cadastro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #555;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  width: 100%;
+  text-align: left;
+}
+
+.form-group input:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.cadastro-button {
+  background-color: #10b981;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-button:hover {
+  background-color: #059669;
+}
+
+.cadastro-footer {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.cadastro-footer a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.cadastro-footer a:hover {
+  text-decoration: underline;
+}

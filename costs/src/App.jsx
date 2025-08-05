@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import RepublicDetails from './pages/RepublicDetails';
 import Perfil from './pages/Perfil';
+import Cadastro from './pages/CadastroPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/republica/:id" element={<RepublicDetails />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
       </div>
     </Router>
