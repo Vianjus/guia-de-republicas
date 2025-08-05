@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import { FaStar, FaHeart, FaMapMarkerAlt } from 'react-icons/fa';
@@ -16,7 +17,8 @@ export default function Home() {
       imagem: republica1,
       rating: 5,
       reviews: 10,
-      favoritada: false
+      favoritada: false,
+      caracteristicas: ["wifi", "quarto individual", "cozinha equipada", "lavanderia"]
     },
     {
       id: 2,
@@ -27,7 +29,8 @@ export default function Home() {
       imagem: republica2,
       rating: 4.8,
       reviews: 15,
-      favoritada: true
+      favoritada: true,
+      caracteristicas: ["wifi", "salão de TV", "varanda", "churrasqueira"]
     },
     {
       id: 3,
@@ -38,9 +41,18 @@ export default function Home() {
       imagem: republica3,
       rating: 4.5,
       reviews: 8,
-      favoritada: false
+      favoritada: false,
+      caracteristicas: ["wifi", "quarto compartilhado", "cozinha equipada", "jardim"]
     }
   ];
+
+  const [filtros, setFiltros] = useState({
+    tipo: "Tipo de república",
+    preco: "Preço",
+    distancia: "Distância da UFOP"
+  });
+  const [palavraChave, setPalavraChave] = useState('');
+  const [republicasFiltradas, setRepublicasFiltradas] = useState(republicas);
 
   const toggleFavorito = (id, e) => {
     e.preventDefault();
@@ -49,36 +61,83 @@ export default function Home() {
     // Aqui você implementaria a lógica real de favoritar
   };
 
+  const aplicarFiltros = () => {
+    let resultado = republicas;
+
+    if (filtros.tipo !== "Tipo de república") {
+      resultado = resultado.filter(rep => rep.tipo === filtros.tipo);
+    }
+    if (filtros.preco !== "Preço") {
+      const [min, max] = filtros.preco.split(" - ").map(Number) || [0, Infinity];
+      resultado = resultado.filter(rep => rep.preco >= min && rep.preco <= max);
+    }
+    if (filtros.distancia !== "Distância da UFOP") {
+      const [minDist, maxDist] = filtros.distancia.split("-").map(dist => {
+        if (dist === "10+ min") return 10;
+        return parseInt(dist) || 0;
+      }) || [0, Infinity];
+      resultado = resultado.filter(rep => {
+        const dist = parseInt(rep.distancia.split(" ")[0]);
+        return dist >= minDist && dist <= maxDist;
+      });
+    }
+    if (palavraChave.trim()) {
+      resultado = resultado.filter(rep =>
+        rep.caracteristicas.some(carac => 
+          carac.toLowerCase().includes(palavraChave.toLowerCase())
+        )
+      );
+    }
+
+    setRepublicasFiltradas(resultado);
+  };
+
   return (
     <main className="home-container">
       <section className="search-section">
         <div className="search-filters">
-          <select>
+          
+          <input
+            type="text"
+            placeholder="Pesquise por características"
+            value={palavraChave}
+            onChange={(e) => setPalavraChave(e.target.value)}
+          />
+          <select
+            value={filtros.tipo}
+            onChange={(e) => setFiltros({ ...filtros, tipo: e.target.value })}
+          >
             <option>Tipo de república</option>
             <option>Feminina</option>
             <option>Masculina</option>
             <option>Mista</option>
           </select>
-          <select>
+          <select
+            value={filtros.preco}
+            onChange={(e) => setFiltros({ ...filtros, preco: e.target.value })}
+          >
             <option>Preço</option>
             <option>Até R$ 400</option>
             <option>R$ 400 - R$ 600</option>
             <option>Acima de R$ 600</option>
           </select>
-          <select>
+          <select
+            value={filtros.distancia}
+            onChange={(e) => setFiltros({ ...filtros, distancia: e.target.value })}
+          >
             <option>Distância da UFOP</option>
             <option>Até 5 min</option>
             <option>5-10 min</option>
             <option>10+ min</option>
           </select>
-          <button className="filter-button">Filtrar</button>
+          <button className="filter-button" onClick={aplicarFiltros}>Filtrar</button>
         </div>
       </section>
 
       <section className="republicas-section">
         <h2>Repúblicas em destaque</h2>
         <div className="republicas-grid">
-          {republicas.map((rep) => (
+          {republicasFiltradas.map((rep) => (
             <Link to={`/republica/${rep.id}`} key={rep.id} className="republica-card-link">
               <div className="republica-card">
                 <div className="card-image">
