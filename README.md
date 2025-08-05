@@ -11,7 +11,8 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 * [Tiago Mol](https://github.com/tiagoqwert)
 * [Vinicius Anjos](https://github.com/Vianjus)
 
-
+## [Documentação](https://docs.google.com/document/d/1OzeddOd3AptCHO2vf9thLSeHto3D1Mh6AqS-jUHy69E/edit?tab=t.0)
+  
 ## Release Notes
 
 ### V 0.0.1

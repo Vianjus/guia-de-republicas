@@ -99,7 +99,7 @@ export default function Home() {
           
           <input
             type="text"
-            placeholder="Pesquise por características"
+            placeholder="Pesquise"
             value={palavraChave}
             onChange={(e) => setPalavraChave(e.target.value)}
           />
