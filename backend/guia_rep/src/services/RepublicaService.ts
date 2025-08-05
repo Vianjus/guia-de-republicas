@@ -47,4 +47,19 @@ export class RepublicaService {
     // 4. Chama o repository para inserir e retorna o resultado
     return RepublicaRepository.cadastrarRepNoBD(repData);
   }
+
+  static async deletarRep(id: number): Promise<void> {
+    // Primeiro, verifica se a república existe
+    const republicaExistente = await RepublicaRepository.encontrarPorIdNoBD(id);
+    if (!republicaExistente) {
+      throw new Error("República não encontrada.");
+    }
+
+    // Se existir, procede com a exclusão
+    const deletado = await RepublicaRepository.deletarRepNoBD(id);
+    if (!deletado) {
+      // Isso pode acontecer se a república foi deletada por outro processo entre a verificação e a exclusão
+      throw new Error("Falha ao deletar república. Tente novamente.");
+    }
+  }
 }

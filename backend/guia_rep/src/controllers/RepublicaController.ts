@@ -21,4 +21,27 @@ export class RepublicaController {
       res.status(400).json({ error: (err as Error).message });
     }
   }
+
+  static async deletarRep(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params; // Pega o ID da URL
+      const republicaId = parseInt(id, 10); // Converte para número
+
+      if (isNaN(republicaId)) {
+        res.status(400).json({ error: "ID da república inválido." });
+        return;
+      }
+
+      await RepublicaService.deletarRep(republicaId);
+      // Status 204 No Content é apropriado para deleções bem-sucedidas sem retorno de corpo
+      res.status(204).send();
+    } catch (error) {
+      // Se a república não for encontrada, o service lança um erro
+      if ((error as Error).message === "República não encontrada.") {
+        res.status(404).json({ error: (error as Error).message });
+      } else {
+        res.status(500).json({ error: (error as Error).message });
+      }
+    }
+  }
 }

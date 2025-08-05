@@ -54,8 +54,8 @@ export class RepublicaRepository {
       const insertRepublicaQuery = `
         INSERT INTO republicas (
           nome, descricao, endereco_completo, tipo, preco_medio_mensal,
-          vagas_disponiveis, ativa, id_usuario_responsavel, telefone_rep
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+          vagas_disponiveis, ativa, id_usuario_responsavel
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *;
       `;
 
@@ -68,7 +68,6 @@ export class RepublicaRepository {
         data.vagas_disponiveis,
         data.ativa,
         data.id_responsavel,
-        data.telefone_rep,
       ];
 
       const { rows } = await client.query(
@@ -121,4 +120,65 @@ export class RepublicaRepository {
       throw new Error("Erro ao verificar responsável");
     }
   }
+
+  static async encontrarPorIdNoBD(id: number): Promise<Republica | null> {
+    try {
+      const res = await pool.query(`
+        SELECT
+          r.*,
+          COALESCE(json_agg(
+            json_build_object(
+              'id', f.id,
+              'url_imagem', f.url_imagem,
+              'descricao_alt', f.descricao_alt
+            )
+          ) FILTER (WHERE f.id IS NOT NULL), '[]') AS fotos
+        FROM republicas r
+        LEFT JOIN fotos_republica f ON f.id_republica = r.id
+        WHERE r.id = $1
+        GROUP BY r.id
+      `, [id]);
+      return res.rows[0] || null; // Retorna a primeira linha ou null se não encontrar
+    } catch (error) {
+      console.error(`Erro ao buscar república com ID ${id}:`, error);
+      throw new Error("Erro ao buscar república por ID");
+    }
+  }
+
+  static async deletarRepNoBD(id: number): Promise<boolean> {
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
+
+      // Primeiro, deleta as fotos associadas à república para evitar erros de chave estrangeira
+      await client.query("DELETE FROM fotos_republica WHERE id_republica = $1", [id]);
+
+      // Depois, deleta a república
+      const res = await client.query("DELETE FROM republicas WHERE id = $1", [id]);
+
+      await client.query("COMMIT");
+      return res.rowCount! > 0; // Retorna true se alguma linha foi deletada
+    } catch (error) {
+      await client.query("ROLLBACK");
+      console.error(`Erro ao deletar república com ID ${id}:`, error);
+      throw new Error(`Erro ao deletar república: ${(error as Error).message}`);
+    } finally {
+      client.release();
+    }
+  }
+
+  static async contarRepublicasPorIdResponsavel(id: number): Promise<number> {
+    try {
+      const res = await pool.query(
+        "SELECT COUNT(*) FROM republicas WHERE id_usuario_responsavel = $1",
+        [id]
+      );
+      return parseInt(res.rows[0].count, 10);
+    } catch (error) {
+      console.error("Erro ao contar repúblicas por ID:", error);
+      throw new Error("Erro ao verificar repúblicas do usuário");
+    }
+  }
 }
+
+
