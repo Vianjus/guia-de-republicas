@@ -65,4 +65,17 @@ export class UsuarioRepository {
       throw new Error("Erro ao criar usuário");
     }
   }
+
+  static async deletarUsuarioPorEmailNoBD(email: string): Promise<number> {
+    try {
+      const res = await pool.query(
+        "DELETE FROM usuarios WHERE email = $1",
+        [email]
+      );
+      return res.rowCount ?? 0;
+    } catch (error) {
+      console.error("Erro ao deletar usuário:", error);
+      throw new Error("Erro ao deletar usuário");
+    }
+  }
 }

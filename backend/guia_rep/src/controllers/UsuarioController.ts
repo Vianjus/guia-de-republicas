@@ -51,4 +51,25 @@ export class UsuarioController {
       res.status(400).json({ error: (error as Error).message });
     }
   }
+
+  static async deletarUsuario(req: Request, res: Response): Promise<void> {
+    const { email } = req.params;
+
+    try {
+      await UsuarioService.deletarUsuarioPorEmail(email);
+      res.status(204).send();
+    } catch (error) {
+      const err = error as Error;
+
+      if (err.message.includes("responsável por uma república")) {
+        res.status(409).json({ error: err.message }); // 409 Conflict
+      } 
+      else if (err.message === "Usuário não encontrado") {
+        res.status(404).json({ error: err.message });
+      } 
+      else {
+        res.status(500).json({ error: "Erro interno ao deletar usuário" });
+      }
+    }
+  }
 }

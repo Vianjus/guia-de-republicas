@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { Usuario, UsuarioSeguro } from "../models/Usuario";
 import { UsuarioRepository } from "../repositories/UsuarioRepository";
+import { RepublicaRepository } from "../repositories/RepublicaRepository";
 import { generateToken } from "../utils/jwt";
 
 export class UsuarioService {
@@ -48,5 +49,26 @@ export class UsuarioService {
     // Aqui você pode salvar no banco, por exemplo:
 
     return await UsuarioRepository.cadastrarUsuarioNoBD(usuarioData);
+  }
+
+  static async deletarUsuarioPorEmail(email: string): Promise<void> {
+    // 1. Primeiro, encontramos o usuário para obter seu ID e verificar se ele existe.
+    const usuario = await UsuarioRepository.encontrarPorEmailNoBD(email);
+
+    // Se o usuário não for encontrado, já podemos parar aqui.
+    if (!usuario) {
+      throw new Error("Usuário não encontrado");
+    }
+
+    // 2. Com o ID do usuário em mãos, verificamos as repúblicas.
+    const totalRepublicas = await RepublicaRepository.contarRepublicasPorIdResponsavel(usuario.id);
+
+    if (totalRepublicas > 0) {
+      throw new Error("Este usuário não pode ser deletado pois é responsável por uma república.");
+    }
+
+    // 3. Se todas as verificações passaram, deletamos o usuário.
+    // O método de deleção já existia e usava o email, então podemos reutilizá-lo.
+    await UsuarioRepository.deletarUsuarioPorEmailNoBD(email);
   }
 }
