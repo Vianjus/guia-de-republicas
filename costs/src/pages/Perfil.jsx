@@ -10,7 +10,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const credentials = { email, senha };
 
     try {
@@ -21,12 +20,14 @@ const LoginPage = () => {
 
       const { token } = response.data;
 
+      console.log("Resposta do servidor:", response.data);
+
       localStorage.setItem('token', token);
-      
-      console.log("Login bem-sucedido!");
+      localStorage.setItem('userType', token.user.tipo_usuario); // Salva 'estudante' ou 'responsavel'
+
       alert("Login realizado com sucesso!");
 
-      navigate('/'); 
+      navigate('/');
 
     } catch (error) {
       console.error("Erro no login:", error);

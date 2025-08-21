@@ -20,10 +20,19 @@ export class UsuarioService {
     const token = generateToken({
       id: usuario.id,
       email: usuario.email,
-      cargo: "normal",
+      tipo_usuario: usuario.tipo_usuario,
     });
-    return token;
+
+    const usuarioSeguro = {
+      id: usuario.id,
+      nome_completo: usuario.nome_completo,
+      email: usuario.email,
+      tipo_usuario: usuario.tipo_usuario,
+    };
+
+    return { token, user: usuarioSeguro };
   }
+
   static async retornarTodosUsuarios(): Promise<UsuarioSeguro[]> {
     return UsuarioRepository.encontrarTodosUsuarioNoBD();
   }

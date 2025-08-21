@@ -6,8 +6,9 @@ export class UsuarioController {
     const { email, senha } = req.body;
 
     try {
-      const token = await UsuarioService.login(email, senha);
-      res.json({ token });
+      const data = await UsuarioService.login(email, senha);
+      
+      res.json({ token: data }); 
     } catch (err) {
       res.status(401).json({ error: (err as Error).message });
     }
