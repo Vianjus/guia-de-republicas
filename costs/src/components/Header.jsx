@@ -77,7 +77,7 @@ export default function Header() {
             </div>
           </>
         ) : (
-          <Link to="/login" className="login-button">
+          <Link to="/login" className="login-button-header">
             <FaSignInAlt />
             <span>Entrar</span>
           </Link>

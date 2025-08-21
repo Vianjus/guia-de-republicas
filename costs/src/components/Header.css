@@ -75,7 +75,6 @@
   animation: fadeIn 0.2s ease-out;
 }
 
-/* Itens dentro do menu */
 .menu-item {
   padding: 12px 16px;
   font-size: 0.95rem;
@@ -101,29 +100,32 @@
 
 .logout-button {
   color: #c94040;
-  border-top: 1px solid #f0f0f0; /* Separador visual */
+  border-top: 1px solid #f0f0f0;
 }
 
-.login-button {
+.login-button-header {
+  background-color: #3b82f6;
+  color: white !important; 
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: #2a7ae4;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
+  justify-content: space-between;
 }
 
-.login-button:hover {
-  background-color: #2264b9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(42, 122, 228, 0.3);
+.login-button-header span {
+  margin-left: 8px;
+  margin-bottom: 2px;
 }
 
-/* Animação simples para o menu aparecer */
+.login-button-header:hover {
+  background-color: #2563eb;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -137,7 +139,6 @@
 
 @media (max-width: 768px) {
   .header-title {
-    /* Em telas muito pequenas, é melhor esconder o título para não poluir a UI */
     display: none;
   }
 }
