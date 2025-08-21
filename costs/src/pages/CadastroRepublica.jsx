@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageUploader from "../components/ImageUploader";
 import { RepublicaContext } from "../context/RepublicaContext";
+import "./CadastroRepublica.css"; // Importando o CSS
 
 const API_BASE = process.env.REACT_APP_API_BASE_URL || "http://localhost:3001";
 
@@ -68,69 +69,117 @@ export default function CadastroRepublica() {
   }
 
   return (
-    <div className="cadastro-container">
+    <div className="cadastro-republica-container">
       <div className="cadastro-card">
         <h2 className="cadastro-title">Anunciar república</h2>
 
-        {erro && <div style={{ color: "#b91c1c", marginBottom: 12 }}>{erro}</div>}
-        {ok && <div style={{ color: "#065f46", marginBottom: 12 }}>República criada com sucesso!</div>}
+        {erro && <div className="error-message">{erro}</div>}
+        {ok && <div className="success-message">República criada com sucesso!</div>}
 
-        <form onSubmit={handleSubmit} className="cadastro-form">
-          <div className="form-group">
-            <label>Nome</label>
-            <input value={nome} onChange={(e) => setNome(e.target.value)} required />
+        <form onSubmit={handleSubmit} className="cadastro-republica-form">
+          <div className="form-row">
+            <div className="form-group">
+              <label>Nome</label>
+              <input 
+                value={nome} 
+                onChange={(e) => setNome(e.target.value)} 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Tipo</label>
+              <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+                <option value="masculina">Masculina</option>
+                <option value="feminina">Feminina</option>
+                <option value="mista">Mista</option>
+              </select>
+            </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group full-width">
             <label>Descrição</label>
-            <textarea value={descricao} onChange={(e) => setDescricao(e.target.value)} required />
+            <textarea 
+              value={descricao} 
+              onChange={(e) => setDescricao(e.target.value)} 
+              required 
+              rows="4"
+            />
           </div>
 
-          <div className="form-group">
+          <div className="form-group full-width">
             <label>Endereço completo</label>
-            <input value={endereco} onChange={(e) => setEndereco(e.target.value)} required />
+            <input 
+              value={endereco} 
+              onChange={(e) => setEndereco(e.target.value)} 
+              required 
+            />
           </div>
 
-          <div className="form-group">
-            <label>Tipo</label>
-            <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-              <option value="masculina">Masculina</option>
-              <option value="feminina">Feminina</option>
-              <option value="mista">Mista</option>
-            </select>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Preço médio mensal (R$)</label>
+              <input 
+                type="number" 
+                value={preco} 
+                onChange={(e) => setPreco(e.target.value)} 
+                min="0" 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Vagas disponíveis</label>
+              <input 
+                type="number" 
+                value={vagas} 
+                onChange={(e) => setVagas(e.target.value)} 
+                min="0" 
+                required 
+              />
+            </div>
           </div>
 
-          <div className="form-group">
-            <label>Preço médio mensal (R$)</label>
-            <input type="number" value={preco} onChange={(e) => setPreco(e.target.value)} min="0" required />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Email do responsável</label>
+              <input 
+                type="email" 
+                value={emailResp} 
+                onChange={(e) => setEmailResp(e.target.value)} 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Telefone da república</label>
+              <input 
+                value={telefoneRep} 
+                onChange={(e) => setTelefoneRep(e.target.value)} 
+              />
+            </div>
           </div>
 
-          <div className="form-group">
-            <label>Vagas disponíveis</label>
-            <input type="number" value={vagas} onChange={(e) => setVagas(e.target.value)} min="0" required />
-          </div>
-
-          <div className="form-group">
-            <label>Email do responsável</label>
-            <input type="email" value={emailResp} onChange={(e) => setEmailResp(e.target.value)} required />
-          </div>
-
-          <div className="form-group">
-            <label>Telefone da república</label>
-            <input value={telefoneRep} onChange={(e) => setTelefoneRep(e.target.value)} />
-          </div>
-
-          <div className="form-group">
+          <div className="form-group full-width">
             <label>Imagens (upload para a nuvem)</label>
             <ImageUploader onUploaded={setFotos} />
-            {!!fotos.length && (
-              <ul style={{ marginTop: 8 }}>
-                {fotos.map((f, i) => (<li key={i}>{f.url_imagem}</li>))}
-              </ul>
+            {fotos.length > 0 && (
+              <div className="uploaded-images">
+                <p>Imagens enviadas: {fotos.length}</p>
+                <ul>
+                  {fotos.map((f, i) => (
+                    <li key={i}>{f.url_imagem}</li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
 
-          <button type="submit" className="cadastro-button" disabled={loading}>
+          <button 
+            type="submit" 
+            className="cadastro-button" 
+            disabled={loading}
+          >
             {loading ? "Salvando..." : "Salvar república"}
           </button>
         </form>
