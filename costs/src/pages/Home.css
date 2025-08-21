@@ -233,21 +233,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.favorite-button:hover {
-  background: white;
-  transform: scale(1.1);
-}
-
-.favorite-button svg {
-  color: #cbd5e0;
-  font-size: 1.2rem;
-  transition: color 0.2s ease;
-}
-
-.favorite-button .favoritada {
-  color: #ff4757;
-}
-
 .card-info {
   padding: 24px;
   flex: 1;

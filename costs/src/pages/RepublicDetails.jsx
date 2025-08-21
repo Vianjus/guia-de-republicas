@@ -108,14 +108,6 @@ export default function RepublicDetails() {
             </span>
           </div>
         </div>
-        <button 
-          className={`favorite-button ${favorita ? 'favorited' : ''}`}
-          onClick={toggleFavorito}
-          aria-label={favorita ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-        >
-          <FaHeart />
-          {favorita ? 'Favorita' : 'Favoritar'}
-        </button>
       </div>
 
       <div className="republic-content">
@@ -137,7 +129,7 @@ export default function RepublicDetails() {
             <div className="price-value">
               R$ {parseFloat(republica.preco_medio_mensal || 0).toFixed(2)}
             </div>
-            <p className="price-note">Para bixos - Inclui todas as despesas</p>
+            <p className="price-note">Para bixos</p>
             
             <div className="vacancy-info">
               <FaUsers /> {republica.vagas_disponiveis || 0} vagas disponíveis
@@ -201,12 +193,6 @@ export default function RepublicDetails() {
             Descrição
           </button>
           <button 
-            className={`tab ${activeTab === 'caracteristicas' ? 'active' : ''}`}
-            onClick={() => setActiveTab('caracteristicas')}
-          >
-            Características
-          </button>
-          <button 
             className={`tab ${activeTab === 'avaliacoes' ? 'active' : ''}`}
             onClick={() => setActiveTab('avaliacoes')}
           >
@@ -222,23 +208,6 @@ export default function RepublicDetails() {
                 {republica.descricao || 
                   "Esta república não possui uma descrição detalhada. Entre em contato para obter mais informações sobre as instalações, regras e ambiente da casa."}
               </p>
-            </div>
-          )}
-
-          {activeTab === 'caracteristicas' && (
-            <div className="features-section">
-              <h3>Características e Comodidades</h3>
-              <div className="features-grid">
-                {(republica.caracteristicas || []).map((caracteristica, index) => (
-                  <div key={index} className="feature-item">
-                    <span className="feature-check">✓</span>
-                    {caracteristica}
-                  </div>
-                ))}
-                {(republica.caracteristicas || []).length === 0 && (
-                  <p>Nenhuma característica informada.</p>
-                )}
-              </div>
             </div>
           )}
 

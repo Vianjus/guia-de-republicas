@@ -175,13 +175,7 @@ export default function Home() {
                         }}
                       />
                       <div className="card-badge">{rep.tipo || "—"}</div>
-                      <button
-                        className="favorite-button"
-                        onClick={(e) => toggleFavorito(rep.id, e)}
-                        aria-label={rep.favoritada ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-                      >
-                        <FaHeart className={rep.favoritada ? "favoritada" : ""} />
-                      </button>
+                      
                     </div>
                     <div className="card-info">
                       <h3>{rep.nome || "República Sem Nome"}</h3>
