@@ -47,6 +47,7 @@ export default function Home() {
       });
       if (filtros.preco === "acima-600") resultado = resultado.filter(rep => parseFloat(rep.preco_medio_mensal || 0) > 600);
     }
+    
 
     if (palavraChave.trim()) {
       resultado = resultado.filter(rep =>

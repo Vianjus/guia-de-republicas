@@ -52,10 +52,6 @@ export default function RepublicDetails() {
     fetchRepublica();
   }, [id]);
 
-  const toggleFavorito = () => {
-    setFavorita(!favorita);
-    // Aqui você pode adicionar a lógica para salvar no backend
-  };
 
   const handleContact = (method) => {
     // Lógica para contato baseado no método escolhido
@@ -115,7 +111,7 @@ export default function RepublicDetails() {
           <ImageGallery
             items={images}
             showPlayButton={false}
-            showFullscreenButton={true}
+            showFullscreenButton={false}
             showThumbnails={true}
             thumbnailPosition="bottom"
             autoPlay={false}
