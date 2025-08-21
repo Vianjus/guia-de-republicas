@@ -46,7 +46,7 @@ const CadastroPage = () => {
       console.log("Usuário cadastrado com sucesso:", response.data);
       alert("Cadastro realizado com sucesso!");
 
-      navigate("/perfil");
+      navigate("/login");
 
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
@@ -132,7 +132,7 @@ const CadastroPage = () => {
           </button>
         </form>
         <p className="cadastro-footer">
-          Já tem uma conta? <a href="/perfil">Faça login</a>
+          Já tem uma conta? <a href="/login">Faça login</a>
         </p>
       </div>
     </div>

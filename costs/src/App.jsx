@@ -4,10 +4,9 @@ import Header from './components/Header';
 import Cadastro from './pages/CadastroPage';
 import CadastroRepublica from "./pages/CadastroRepublica";
 import Home from './pages/Home';
-import Perfil from './pages/Perfil';
+import Perfil from './pages/Login';
 import RepublicDetails from './pages/RepublicDetails';
 
-// ✅ IMPORTAR O PROVIDER
 import { RepublicaProvider } from './context/RepublicaContext';
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/republica/:id" element={<RepublicDetails />} />
-            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/login" element={<Perfil />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/anunciar" element={<CadastroRepublica />} />
           </Routes>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import "./Perfil.css";
+import "./Login.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +23,8 @@ const LoginPage = () => {
       console.log("Resposta do servidor:", response.data);
 
       localStorage.setItem('token', token);
-      localStorage.setItem('userType', token.user.tipo_usuario); // Salva 'estudante' ou 'responsavel'
+      localStorage.setItem('userType', token.user.tipo_usuario); // Salva 'estudante' ou 'morador'
+      localStorage.setItem('nome', token.user.nome_completo);
 
       alert("Login realizado com sucesso!");
 
