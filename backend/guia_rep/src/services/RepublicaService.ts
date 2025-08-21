@@ -23,6 +23,8 @@ export class RepublicaService {
     );
     if (existing) throw new Error("República já cadastrada");
 
+    console.log("Aq");
+
     // 2. Busca o usuário responsável pelo e-mail
     const usuario = await UsuarioRepository.encontrarPorEmailNoBD(
       data.email_responsavel
@@ -61,5 +63,9 @@ export class RepublicaService {
       // Isso pode acontecer se a república foi deletada por outro processo entre a verificação e a exclusão
       throw new Error("Falha ao deletar república. Tente novamente.");
     }
+  }
+
+  static async retornarRepPorId(id: number): Promise<Republica | null> {
+    return RepublicaRepository.encontrarPorIdNoBD(id);
   }
 }

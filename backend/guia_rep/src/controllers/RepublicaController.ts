@@ -11,10 +11,25 @@ export class RepublicaController {
     }
   }
 
+  static async retornarRepId(req: Request, res: Response): Promise<void> {
+    const id = req.params.id;
+    const numId = parseInt(id);
+
+    try {
+      const rep = await RepublicaService.retornarRepPorId(numId);
+      if (!rep) {
+        res.status(404).json({ mensagem: "Republica não encontrado" });
+      }
+      res.status(200).json(rep);
+    } catch (error) {
+      res.status(500).json({ erro: "Erro ao buscar usuário" });
+    }
+  }
+
   static async cadastrarRep(req: Request, res: Response): Promise<void> {
     try {
-      const user = (req as any).user;
-      console.log(user);
+      console.log("aqyu");
+      console.log(req.body);
       const rep = await RepublicaService.cadastrarRep(req.body);
       res.status(201).json(rep);
     } catch (err) {

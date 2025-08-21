@@ -45,6 +45,7 @@ export class RepublicaRepository {
   static async cadastrarRepNoBD(
     data: Omit<Republica, "id" | "data_criacao" | "data_atualizacao">
   ): Promise<Republica> {
+    console.log(data);
     const client = await pool.connect();
 
     try {
@@ -123,7 +124,8 @@ export class RepublicaRepository {
 
   static async encontrarPorIdNoBD(id: number): Promise<Republica | null> {
     try {
-      const res = await pool.query(`
+      const res = await pool.query(
+        `
         SELECT
           r.*,
           COALESCE(json_agg(
@@ -137,7 +139,9 @@ export class RepublicaRepository {
         LEFT JOIN fotos_republica f ON f.id_republica = r.id
         WHERE r.id = $1
         GROUP BY r.id
-      `, [id]);
+      `,
+        [id]
+      );
       return res.rows[0] || null; // Retorna a primeira linha ou null se não encontrar
     } catch (error) {
       console.error(`Erro ao buscar república com ID ${id}:`, error);
@@ -151,10 +155,15 @@ export class RepublicaRepository {
       await client.query("BEGIN");
 
       // Primeiro, deleta as fotos associadas à república para evitar erros de chave estrangeira
-      await client.query("DELETE FROM fotos_republica WHERE id_republica = $1", [id]);
+      await client.query(
+        "DELETE FROM fotos_republica WHERE id_republica = $1",
+        [id]
+      );
 
       // Depois, deleta a república
-      const res = await client.query("DELETE FROM republicas WHERE id = $1", [id]);
+      const res = await client.query("DELETE FROM republicas WHERE id = $1", [
+        id,
+      ]);
 
       await client.query("COMMIT");
       return res.rowCount! > 0; // Retorna true se alguma linha foi deletada
@@ -180,5 +189,3 @@ export class RepublicaRepository {
     }
   }
 }
-
-
