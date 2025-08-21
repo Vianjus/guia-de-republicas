@@ -1,15 +1,42 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import "./Perfil.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Senha:", senha);
+
+    const credentials = { email, senha };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/users/login",
+        credentials
+      );
+
+      const { token } = response.data;
+
+      localStorage.setItem('token', token);
+      
+      console.log("Login bem-sucedido!");
+      alert("Login realizado com sucesso!");
+
+      navigate('/'); 
+
+    } catch (error) {
+      console.error("Erro no login:", error);
+      
+      if (error.response && error.response.data && error.response.data.error) {
+        alert(`Falha no login: ${error.response.data.error}`);
+      } else {
+        alert("Ocorreu um erro ao tentar fazer login. Tente novamente.");
+      }
+    }
   };
 
   return (
@@ -40,7 +67,7 @@ const LoginPage = () => {
           <button type="submit" className="login-button">Entrar</button>
         </form>
         <p className="login-footer">
-            Ainda não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
+          Ainda não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
         </p>
       </div>
     </div>
