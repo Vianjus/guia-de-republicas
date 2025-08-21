@@ -39,21 +39,11 @@ export default function Home() {
     }
 
     if (filtros.preco !== "Preço") {
-      if (filtros.preco === "Até R$ 400") resultado = resultado.filter(rep => (rep.preco_media_mensal || 0) <= 400);
+      if (filtros.preco === "Até R$ 400") resultado = resultado.filter(rep => parseFloat(rep.preco_medio_mensal || 0) <= 400);
       if (filtros.preco === "R$ 400 - R$ 600") resultado = resultado.filter(rep => {
-        const p = rep.preco_media_mensal || 0; return p >= 400 && p <= 600;
+        const p = parseFloat(rep.preco_medio_mensal || 0); return p >= 400 && p <= 600;
       });
-      if (filtros.preco === "Acima de R$ 600") resultado = resultado.filter(rep => (rep.preco_media_mensal || 0) > 600);
-    }
-
-    if (filtros.distancia !== "Distância da UFOP") {
-      resultado = resultado.filter(rep => {
-        const dist = parseInt(rep.distancia?.split(" ")[0]) || 0;
-        if (filtros.distancia === "Até 5 min") return dist <= 5;
-        if (filtros.distancia === "5-10 min") return dist > 5 && dist <= 10;
-        if (filtros.distancia === "10+ min") return dist > 10;
-        return true;
-      });
+      if (filtros.preco === "Acima de R$ 600") resultado = resultado.filter(rep => parseFloat(rep.preco_medio_mensal || 0) > 600);
     }
 
     if (palavraChave.trim()) {
@@ -103,15 +93,6 @@ export default function Home() {
             <option>R$ 400 - R$ 600</option>
             <option>Acima de R$ 600</option>
           </select>
-          <select
-            value={filtros.distancia}
-            onChange={(e) => setFiltros({ ...filtros, distancia: e.target.value })}
-          >
-            <option>Distância da UFOP</option>
-            <option>Até 5 min</option>
-            <option>5-10 min</option>
-            <option>10+ min</option>
-          </select>
         </div>
       </section>
 
@@ -134,12 +115,13 @@ export default function Home() {
                   <h3>{rep.nome || "—"}</h3>
                   <p className="republica-type">{rep.tipo || "—"}</p>
                   <p className="republica-price">
-                    R$ {(rep.preco_media_mensal || 0).toFixed(2)}
+                    R$ {parseFloat(rep.preco_medio_mensal || 0).toFixed(2)}
                   </p>
                   <div className="republica-meta">
-                    <span><FaMapMarkerAlt /> {rep.distancia || "—"}</span>
+                    <span><FaMapMarkerAlt /> {rep.endereco_completo || "—"}</span>
                     <span><FaStar /> {rep.rating || 0} ({rep.reviews || 0})</span>
                   </div>
+                  <p>Vagas: {rep.vagas_disponiveis || 0}</p>
                 </div>
               </div>
             </Link>
