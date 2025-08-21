@@ -6,8 +6,18 @@ import { cadastroRepublicaSchema } from './../../schemas/repSchema';
 
 const router = Router();
 
+// continua protegida
 router.get("/", authenticateToken, RepublicaController.encontrarTodasReps);
-router.post("/create", authenticateToken, validateBody(cadastroRepublicaSchema), RepublicaController.cadastrarRep);
+
+// 👉 liberada só para demo (sem autenticação)
+router.post(
+  "/create",
+  validateBody(cadastroRepublicaSchema),
+  RepublicaController.cadastrarRep
+);
+
+// continua protegida
 router.delete("/delete/:id", authenticateToken, RepublicaController.deletarRep);
 
 export default router;
+

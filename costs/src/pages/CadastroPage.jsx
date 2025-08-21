@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./CadastroPage.css";
 
 
@@ -8,6 +8,7 @@ const CadastroPage = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+    const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
