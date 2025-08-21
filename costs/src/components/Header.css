@@ -75,6 +75,22 @@
   animation: fadeIn 0.2s ease-out;
 }
 
+.announce-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #000000 !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 12px 12px;
+  border-radius: 6px;
+}
+
+.announce-link:hover {
+  color: #2a7ae4;
+  background-color: rgba(42, 122, 228, 0.1);
+  text-decoration: none;
+}
+
 .menu-item {
   padding: 12px 16px;
   font-size: 0.95rem;
@@ -91,11 +107,6 @@
 
 .menu-item:hover {
   background-color: rgba(0, 0, 0, 0.05);
-}
-
-.announce-link {
-  font-weight: 500;
-  color: #2a7ae4;
 }
 
 .logout-button {

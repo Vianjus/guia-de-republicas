@@ -69,6 +69,9 @@ export default function Header() {
               </button>
               {menuAberto && (
                 <div className="profile-menu">
+                  <Link to="/anunciar" className="announce-link">
+                    Anuncie aqui
+                  </Link>
                   <button onClick={handleLogout} className="menu-item logout-button">
                     Sair
                   </button>

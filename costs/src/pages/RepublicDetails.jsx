@@ -1,6 +1,7 @@
 // src/pages/RepublicDetails.jsx
 import { useEffect, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
 import { useParams } from 'react-router-dom';
 import { FaHeart, FaMapMarkerAlt, FaStar, FaUsers, FaWhatsapp, FaEnvelope, FaPhone, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
