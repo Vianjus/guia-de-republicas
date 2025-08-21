@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useParams } from 'react-router-dom';
-import { FaHeart, FaMapMarkerAlt, FaStar, FaUsers, FaWhatsapp, FaEnvelope, FaPhone, FaArrowLeft } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaStar, FaUsers, FaWhatsapp, FaEnvelope, FaPhone, FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './RepublicDetails.css';
 
@@ -13,8 +13,8 @@ export default function RepublicDetails() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [favorita, setFavorita] = useState(false);
   const [activeTab, setActiveTab] = useState('descricao');
+  const [responsavel, setResponsavel] = useState(null);
 
   useEffect(() => {
     const fetchRepublica = async () => {
@@ -25,7 +25,14 @@ export default function RepublicDetails() {
         const data = await res.json();
 
         setRepublica(data);
-        setFavorita(data.favoritada || false);
+
+        if (data.id_usuario_responsavel) {
+          const resUser = await fetch(`http://localhost:3001/api/users/${data.id_usuario_responsavel}`);
+          if (!resUser.ok) throw new Error("Erro ao buscar dados do responsável");
+          // A API retorna um array, então pegamos o primeiro item
+          const userData = await resUser.json(); 
+          setResponsavel(userData[0]);
+        }
 
         // Monta imagens para react-image-gallery
         if (data.fotos && data.fotos.length > 0) {
@@ -52,10 +59,23 @@ export default function RepublicDetails() {
     fetchRepublica();
   }, [id]);
 
+    const handleContact = (method) => {
+    const numeroContato = responsavel?.telefone_contato;
+    const emailContato = responsavel?.email;
 
-  const handleContact = (method) => {
-    // Lógica para contato baseado no método escolhido
-    alert(`Entrando em contato via ${method}`);
+    if (method === 'WhatsApp') {
+      if (!numeroContato) return alert("O responsável não informou um número de WhatsApp.");
+      const numeroLimpo = numeroContato.replace(/\D/g, '');
+      window.open(`https://wa.me/55${numeroLimpo}?text=Olá, vi o anúncio da república "${republica.nome}" e gostaria de mais informações!`, '_blank');
+    } 
+    else if (method === 'Email') {
+      if (!emailContato) return alert("O responsável não informou um email de contato.");
+      window.location.href = `mailto:${emailContato}?subject=Interesse na república "${republica.nome}"`;
+    } 
+    else if (method === 'Telefone') {
+      if (!numeroContato) return alert("O responsável não informou um número de telefone.");
+      window.location.href = `tel:${numeroContato}`;
+    }
   };
 
   if (loading) return (

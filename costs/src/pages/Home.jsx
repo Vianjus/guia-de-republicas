@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import { useContext, useEffect, useState } from "react";
-import { FaHeart, FaMapMarkerAlt, FaStar, FaSearch, FaFilter } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaStar, FaSearch, FaFilter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { RepublicaContext } from '../context/RepublicaContext';
 import republicaFallback from '../imgtests/testInd1.png';
@@ -11,7 +11,6 @@ export default function Home() {
   const [filtros, setFiltros] = useState({
     tipo: "",
     preco: "",
-    distancia: ""
   });
   const [palavraChave, setPalavraChave] = useState('');
   const [republicasFiltradas, setRepublicasFiltradas] = useState([]);
@@ -61,14 +60,6 @@ export default function Home() {
     setRepublicasFiltradas(resultado);
   }, [republicas, filtros, palavraChave]);
 
-  const toggleFavorito = (id, e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setRepublicas(prev =>
-      prev.map(rep => rep.id === id ? { ...rep, favoritada: !rep.favoritada } : rep)
-    );
-  };
-
   const limparFiltros = () => {
     setFiltros({ tipo: "", preco: "", distancia: "" });
     setPalavraChave('');
@@ -79,12 +70,12 @@ export default function Home() {
   return (
     <main className="home-container">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <h1>Encontre sua república ideal em Ouro Preto</h1>
-          <p>Conheça as melhores opções de moradia estudantil perto da UFOP</p>
-        </div>
-      </section>
+        <section className="hero-section">
+          <div className="hero-content">
+            <h1>Encontre sua república ideal em Ouro Preto</h1>
+            <p>Conheça as melhores opções de moradia estudantil perto da UFOP</p>
+          </div>
+        </section>
 
       {/* Search Section */}
       <section className="search-section">
@@ -117,9 +108,9 @@ export default function Home() {
               className="filter-select"
             >
               <option value="">Tipo de república</option>
-              <option value="Feminina">Feminina</option>
-              <option value="Masculina">Masculina</option>
-              <option value="Mista">Mista</option>
+              <option value="feminina">Feminina</option>
+              <option value="masculina">Masculina</option>
+              <option value="mista">Mista</option>
             </select>
           </div>
 

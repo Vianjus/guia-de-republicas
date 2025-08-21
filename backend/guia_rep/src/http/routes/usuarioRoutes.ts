@@ -15,7 +15,8 @@ router.post(
 
 // rota protegida
 router.get("/", UsuarioController.retornarTodosUsuarios);
-router.get("/:id", RepublicaController.retornarRepId);
+router.get("/:id", UsuarioController.retornarUsuarioPorId);
+
 
 router.delete("/:email", UsuarioController.deletarUsuario);
 
