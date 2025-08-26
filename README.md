@@ -15,7 +15,7 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
   
 ## Instalação
 
-01- Baixar todas as tecnologias (React, Node.js e Postgresql) e instalá-las.
+01- Baixar todas as tecnologias (React, Node.js e Postgresql) e instalá-las.\n
 02- Clonar o repositório do Github caso tenha o git instalado, caso não tenha, baixar o zip e descompactar.
 03- No Postgre, criar o Banco de Dados nomeando de “guia_republicas”.
 04- No Postgre, rodar o script “guia_de_republicas_db.sql”, que está no diretório principal, que irá criar todas as tabelas e   relações do banco de dados.
@@ -28,4 +28,5 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 07- Agora com todos os preparativos iniciais (os processos 1 a 5 são necessários somente a primeira vez no site) os servidores de back e front estão prontos para subir, lembre-se de deixar aberto o pgAdmin do postgresql para o banco rodar.
 08- No diretório backend\guia_rep dê o comando no terminal “npm run dev” para rodar o servidor do backend.
 09- Já no diretório costs dê o comando em outro terminal “spm start” para rodar o servidor de frontend, caso sucesso, já irá abrir no navegador o site.
+
 10- Pronto, agora você tem o site rodando localmente com o banco de dados, backend e frontend.
