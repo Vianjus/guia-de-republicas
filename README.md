@@ -11,7 +11,7 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 * [Tiago Mol](https://github.com/tiagoqwert)
 * [Vinicius Anjos](https://github.com/Vianjus)
 
-## [Documentação e Relatório do Trabalho](https://github.com/Vianjus/guia-de-republicas/edit/main/docs/Documentação_Guia_de_Repúblicas.pdf)
+## [Documentação e Relatório do Trabalho](https://github.com/Vianjus/guia-de-republicas/blob/main/docs/Documenta%C3%A7%C3%A3o_Guia_de_Rep%C3%BAblicas.pdf)
   
 ## Instalação
 
@@ -30,4 +30,5 @@ Traballho prático da Matéria de Engenharia de Softwares 2, no qual a equipe ir
 * Já no diretório costs dê o comando em outro terminal “spm start” para rodar o servidor de frontend, caso sucesso, já irá abrir no navegador o site.
 
 * Pronto, agora você tem o site rodando localmente com o banco de dados, backend e frontend.
+
 
