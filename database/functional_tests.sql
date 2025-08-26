@@ -98,6 +98,11 @@ DELETE FROM republicas WHERE id = 5;
 -- Verificando se a foto também sumiu (esta consulta não deve retornar nada)
 SELECT * FROM fotos_republica WHERE id_republica = 2;
 
+-- Deletar todos os dados inseridos para teste OBS: Deletarão todos os outros que foram inseridos anteriormente.
+DELETE FROM fotos_republica;
+DELETE FROM republicas;
+DELETE FROM usuarios;
+
 -- TODOS TESTES PASSARAM.
 
 
